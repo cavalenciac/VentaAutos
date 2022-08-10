@@ -1,0 +1,74 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Including Bootstrap Icons in HTML</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Font Icon CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<div class="card">
+    <div class="card-header">
+        <h1>{{tituloListaAutos}}</h1> 
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Filtrar por:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="filtro">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Filtrar por: </h3>
+            </div>
+        </div>
+    </div>
+    <table class="table-responsive" *ngIf="listaAutos.length>0">
+            <thead>
+                <tr>
+                    <button class="btn bi bi-search"
+                            (click)="muestraImagenes()" >{{muestraImagen ? 'Oculta' : 'Muestra'}} imagen 
+                        </button>
+                    <th>Marca</th>
+                    <th>Modelo</th> 
+                    <th>Año</th>
+                    <th>Color</th>
+                    <th>Kilometros</th>
+                    <th>Precio</th>
+                    <th>Calificacion</th>
+                </tr>
+            </thead>
+            <br>
+            <tbody>
+                <tr *ngFor="let auto of listaAutosFiltrados">
+                    <td>
+                        <p *ngIf="muestraImagen">
+                      <img [src]="auto.imagenUrl" 
+                                [style.width.px]="imageWidth"
+                                [style.margin.px]="imageMargin">
+                            </p>
+                    </td>
+                    <td>{{auto.marca}}</td>
+                    <td>{{auto.modelo | lowercase | aEspacio:'-'}}</td>
+                    <td>{{auto.ano}}</td>
+                    <td>{{auto.color}}</td>
+                    <td>{{auto.kilometros | number}}</td>
+                    <td>{{auto.precio | currency}}</td>
+                    <!-- <td>{{auto.calificacion}}</td> -->
+                    <td>
+                       <app-estrellas
+                        [calificacion]="auto.calificacion"
+                        (starsClick)="onClickCalificacion($event)">
+                       </app-estrellas>
+                      
+                       
+                    
+                    </td>
+                </tr>
+            </tbody>        
+    </table>
+</div>
