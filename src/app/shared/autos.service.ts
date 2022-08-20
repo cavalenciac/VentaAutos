@@ -16,12 +16,16 @@ export class AutosService{
         return this.listaAutos;
     }
 
-    public obtenAuto( id: number ): Auto {
+  /*   public obtenAuto( id: number ): Auto {
       if( this.listaAutos.length == 0 ) {
         this.listaAutos = this._determinaListaAutos();
       }        
       return this.listaAutos.find( auto => auto.id == id )!;
-    }
+    } */
+
+    public obtenAuto( id: number ): Auto {     
+        return this.listaAutos.find( auto => auto.id == id )!;
+      }
 
 private _determinaListaAutos(): Auto[] {
     let  listaAutos = [

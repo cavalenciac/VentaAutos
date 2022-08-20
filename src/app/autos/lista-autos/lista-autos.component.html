@@ -53,7 +53,8 @@
                             </p>
                     </td>
                     <td>{{auto.marca}}</td>
-                    <td>{{auto.modelo | lowercase | aEspacio:'-'}}</td>
+                    <td><a [routerLink]="['/auto',auto.id]">{{auto.modelo | lowercase | aEspacio:'-'}}</a></td>
+                    <!-- <td>{{auto.modelo | lowercase | aEspacio:'-'}}</td> -->
                     <td>{{auto.ano}}</td>
                     <td>{{auto.color}}</td>
                     <td>{{auto.kilometros | number}}</td>
@@ -65,8 +66,7 @@
                         (starsClick)="onClickCalificacion($event)">
                        </app-estrellas>
                       
-                       
-                    
+
                     </td>
                 </tr>
             </tbody>        
